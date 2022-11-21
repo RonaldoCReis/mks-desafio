@@ -12,6 +12,7 @@ export const Header = styled.header`
   background-color: #0f52ba;
   padding: 0 88px 0 65px;
   color: #fff;
+  z-index: 999;
 `;
 
 export const LogoTitle = styled.span`
@@ -45,4 +46,30 @@ export const CartButton = styled.button`
   font-size: 18px;
   display: flex;
   align-items: center;
+`;
+
+export const Footer = styled.footer`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 101px;
+  background-color: #eee;
+  color: #000;
+  font-size: 12px;
+  font-weight: 400;
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+`;
+
+export const Main = styled.main`
+  width: 938px;
+  margin: 116px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 22px;
 `;
