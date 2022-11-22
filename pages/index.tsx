@@ -1,4 +1,5 @@
-import Product, { ProductProps } from '../src/components/product';
+import Cart from '../src/components/Cart/Cart';
+import Product, { ProductProps } from '../src/components/Product';
 import {
   CartButton,
   Footer,
@@ -30,11 +31,7 @@ export default function Home(props: { products: ProductProps[] }) {
           <LogoSubtitle>Sistemas</LogoSubtitle>
         </Logo>
         <CartButton>
-          <img
-            style={{ marginRight: '15px' }}
-            src="/cart.svg"
-            alt="Carrinho de compras"
-          />
+          <img src="/cart.svg" alt="Carrinho de compras" />
           <span>0</span>
         </CartButton>
       </Header>
@@ -53,6 +50,7 @@ export default function Home(props: { products: ProductProps[] }) {
           />
         ))}
       </Main>
+      <Cart />
       <Footer>MKS sistemas © Todos os direitos reservados</Footer>
     </>
   );

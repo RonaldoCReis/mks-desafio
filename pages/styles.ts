@@ -13,6 +13,10 @@ export const Header = styled.header`
   padding: 0 88px 0 65px;
   color: #fff;
   z-index: 999;
+  @media (max-width: 768px) {
+    height: 48px;
+    padding: 0 20px;
+  }
 `;
 
 export const LogoTitle = styled.span`
@@ -20,6 +24,9 @@ export const LogoTitle = styled.span`
   font-weight: 600;
   line-height: 30px;
   text-transform: uppercase;
+  @media (max-width: 768px) {
+    font-size: 32px;
+  }
 `;
 
 export const LogoSubtitle = styled.span`
@@ -27,6 +34,9 @@ export const LogoSubtitle = styled.span`
   line-height: 19px;
   font-weight: 300;
   margin-left: 10px;
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 export const Logo = styled.h1`
@@ -46,6 +56,19 @@ export const CartButton = styled.button`
   font-size: 18px;
   display: flex;
   align-items: center;
+  & > img {
+    margin-right: 15px;
+  }
+  @media (max-width: 768px) {
+    padding: 0 8px;
+    height: 26px;
+    width: 52px;
+    font-size: 12px;
+    & > img {
+      width: 16px;
+      margin-right: 10px;
+    }
+  }
 `;
 
 export const Footer = styled.footer`
@@ -66,10 +89,15 @@ export const Footer = styled.footer`
 `;
 
 export const Main = styled.main`
-  width: 938px;
+  width: 100%;
+  max-width: 978px;
   margin: 116px auto;
+  padding: 0 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   gap: 22px;
+  @media (max-width: 768px) {
+    margin: 18px auto 100px auto;
+  }
 `;

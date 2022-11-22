@@ -28,6 +28,9 @@ const BuyButton = styled.button`
   border: none;
   gap: 14px;
   cursor: pointer;
+  &:hover {
+    background: #003087;
+  }
 `;
 
 const CardBody = styled.div`
@@ -77,6 +80,7 @@ const Desc = styled.p`
   -webkit-box-orient: vertical;
   overflow: hidden;
 `;
+
 export interface ProductProps {
   id: number;
   name: string;
