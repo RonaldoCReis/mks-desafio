@@ -1,5 +1,7 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { CartTypes, closeCart } from '../../redux/cartSlice';
 import CartProduct from './CartProduct';
 
 const Container = styled.div`
@@ -14,6 +16,16 @@ const Container = styled.div`
   padding: 36px 60px calc(42px + 97px) 47px;
   display: flex;
   flex-direction: column;
+  transition: 0.3s;
+  @media (max-width: 768px) {
+    width: 90%;
+    padding: 25px 46px calc(42px + 97px) 34px;
+  }
+  transform: translateX(100%);
+
+  &.active {
+    transform: translateX(0);
+  }
 `;
 
 const BuyButton = styled.button`
@@ -37,6 +49,9 @@ const Title = styled.h2`
   color: #ffffff;
   max-width: 170px;
   margin-bottom: 70px;
+  @media (max-width: 768px) {
+    margin-bottom: 30px;
+  }
 `;
 
 const Total = styled.div`
@@ -63,11 +78,16 @@ const Products = styled.div`
   flex-direction: column;
   gap: 28px;
   overflow-y: auto;
+  margin: -10px;
+  padding: 10px;
+  width: 100%;
 `;
 const Cart = () => {
+  const active = useSelector((state: { cart: CartTypes }) => state.cart.isOpen);
+  const dispatch = useDispatch();
   return (
-    <Container>
-      <CloseCart>
+    <Container className={`${active ? 'active' : ''}`}>
+      <CloseCart onClick={() => dispatch(closeCart())}>
         <img src="/close.svg" alt="Fechar carrinho" />
       </CloseCart>
       <Title>

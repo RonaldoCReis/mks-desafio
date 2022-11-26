@@ -1,5 +1,7 @@
-import Cart from '../src/components/Cart/Cart';
+import { useDispatch } from 'react-redux';
+import Cart from '../src/components/cart/Cart';
 import Product, { ProductProps } from '../src/components/Product';
+import { openCart } from '../src/redux/cartSlice';
 import {
   CartButton,
   Footer,
@@ -23,6 +25,7 @@ export async function getServerSideProps() {
 }
 
 export default function Home(props: { products: ProductProps[] }) {
+  const dispatch = useDispatch();
   return (
     <>
       <Header>
@@ -30,7 +33,7 @@ export default function Home(props: { products: ProductProps[] }) {
           <LogoTitle>Mks</LogoTitle>
           <LogoSubtitle>Sistemas</LogoSubtitle>
         </Logo>
-        <CartButton>
+        <CartButton onClick={() => dispatch(openCart())}>
           <img src="/cart.svg" alt="Carrinho de compras" />
           <span>0</span>
         </CartButton>
