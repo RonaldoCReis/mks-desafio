@@ -11,6 +11,9 @@ const Card = styled.div`
   position: relative;
   padding-bottom: 32px;
   width: 218px;
+  @media (max-width: 768px) {
+    width: 250px;
+  }
 `;
 
 const BuyButton = styled.button`
@@ -61,6 +64,9 @@ const PriceTag = styled.span`
   line-height: 1;
   color: #ffffff;
   white-space: nowrap;
+  @media (max-width: 768px) {
+    padding: 7px 11px;
+  }
 `;
 
 const TitlePriceFlex = styled.div`

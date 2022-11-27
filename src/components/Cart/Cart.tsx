@@ -45,6 +45,9 @@ const BuyButton = styled.button`
   font-size: 28px;
   line-height: 15px;
   color: #ffffff;
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 const Title = styled.h2`

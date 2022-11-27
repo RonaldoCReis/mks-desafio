@@ -63,6 +63,20 @@ const RemoveProduct = styled.button`
   right: -6px;
   top: -6px;
   width: 18px;
+  @media (max-width: 768px) {
+    right: 10px;
+    top: 10px;
+    width: 32px;
+  }
+`;
+
+const ProductImage = styled.div`
+  height: 50px;
+  width: 50px;
+  @media (max-width: 768px) {
+    height: 100px;
+    width: 100px;
+  }
 `;
 
 const CartProduct = ({ id, name, photo, price, quantity }: ProductTypes) => {
@@ -73,7 +87,10 @@ const CartProduct = ({ id, name, photo, price, quantity }: ProductTypes) => {
       <RemoveProduct onClick={() => dispatch(removeProduct({ id }))}>
         <img src="/close.svg" alt="Remover produto" />
       </RemoveProduct>
-      <img width={50} height={50} src={photo} alt={name} />
+      <ProductImage>
+        <img src={photo} alt={name} />
+      </ProductImage>
+
       <Name>{name}</Name>
       <Flex>
         <NumberPicker id={id} quantity={quantity} />

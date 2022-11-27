@@ -1,12 +1,7 @@
-import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Cart from '../src/components/cart/Cart';
 import Product, { ProductProps } from '../src/components/Product';
-import {
-  isCartOpen,
-  openCart,
-  selectNumberOfProducts,
-} from '../src/redux/cartSlice';
+import { openCart, selectNumberOfProducts } from '../src/redux/cartSlice';
 import { Shimmer } from 'react-shimmer';
 import {
   CartButton,
@@ -31,28 +26,8 @@ export async function getStaticProps() {
 }
 
 export default function Home(props: { products: ProductProps[] }) {
-  const [loading, setLoading] = useState(false);
-  // const [products, setProducts] = useState({} as ProductProps[]);
   const dispatch = useDispatch();
   const numberOfProducts = useSelector(selectNumberOfProducts);
-  const cart = useSelector(isCartOpen);
-
-  console.log(props);
-
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     const res = await fetch(
-  //       'https://mks-frontend-challenge-api.herokuapp.com/api/v1/products?page=1&rows=8&sortBy=id&orderBy=DESC'
-  //     );
-  //     const data = await res.json();
-  //     console.log(data.products);
-
-  //     setProducts(data.products);
-  //     setLoading(false);
-  //   };
-  //   fetchProducts();
-  //   console.log(products);
-  // }, []);
 
   return (
     <>
