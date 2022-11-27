@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   // assetPrefix: process.env.NODE_ENV === 'production' ? '' : '/',
+  assetPrefix: '/',
   compiler: {
     styledComponents: true,
   },
