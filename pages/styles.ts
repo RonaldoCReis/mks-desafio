@@ -1,3 +1,4 @@
+import { Shimmer } from 'react-shimmer';
 import styled from 'styled-components';
 
 export const Header = styled.header`

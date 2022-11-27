@@ -11,6 +11,8 @@ import CartProduct from './CartProduct';
 
 const Container = styled.div`
   position: fixed;
+  transform: translateX(100%);
+
   top: 0;
   right: 0;
   width: 486px;
@@ -26,7 +28,6 @@ const Container = styled.div`
     width: 90%;
     padding: 25px 46px calc(42px + 97px) 34px;
   }
-  transform: translateX(100%);
 
   &.active {
     transform: translateX(0);
@@ -86,6 +87,7 @@ const Products = styled.div`
   margin: -10px;
   padding: 10px;
   width: 100%;
+  height: 70%;
 `;
 
 const Cart = () => {

@@ -100,7 +100,7 @@ const Product = ({ id, name, price, description, photo }: ProductProps) => {
     <Card>
       <CardBody>
         <img
-          style={{ maxHeight: '140px', margin: '0 auto' }}
+          style={{ height: '140px', margin: '0 auto' }}
           src={photo}
           alt="Produto"
         />
