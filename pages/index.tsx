@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import Cart from '../src/components/cart/Cart';
-import Product, { ProductProps } from '../src/components/Product';
-import { openCart, selectNumberOfProducts } from '../src/redux/cartSlice';
+import Cart from './components/cart/Cart';
+import Product, { ProductProps } from './components/Product';
+import { openCart, selectNumberOfProducts } from './redux/cartSlice';
 import { Shimmer } from 'react-shimmer';
 import {
   CartButton,

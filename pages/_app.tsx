@@ -2,7 +2,7 @@ import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
 import { Montserrat } from '@next/font/google';
 import { Provider } from 'react-redux';
-import store from '../src/redux/store';
+import store from './redux/store';
 
 const montserrat = Montserrat({ subsets: ['latin'] });
 
