@@ -1,7 +1,12 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { CartTypes, closeCart } from '../../redux/cartSlice';
+import {
+  CartTypes,
+  closeCart,
+  selectProducts,
+  selectTotal,
+} from '../../redux/cartSlice';
 import CartProduct from './CartProduct';
 
 const Container = styled.div`
@@ -82,8 +87,11 @@ const Products = styled.div`
   padding: 10px;
   width: 100%;
 `;
+
 const Cart = () => {
   const active = useSelector((state: { cart: CartTypes }) => state.cart.isOpen);
+  const products = useSelector(selectProducts);
+  const total = useSelector(selectTotal);
   const dispatch = useDispatch();
   return (
     <Container className={`${active ? 'active' : ''}`}>
@@ -94,11 +102,26 @@ const Cart = () => {
         Carrinho <br /> de compras
       </Title>
       <Products>
-        <CartProduct />
+        {products.map((product) => (
+          <CartProduct
+            key={product.id}
+            quantity={product.quantity}
+            price={product.price}
+            photo={product.photo}
+            name={product.name}
+            id={product.id}
+          />
+        ))}
       </Products>
       <Total>
         <span>Total:</span>
-        <span>R$798</span>
+        <span>
+          {Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+            maximumFractionDigits: 0,
+          }).format(total)}
+        </span>
       </Total>
       <BuyButton>Finalizar Compra</BuyButton>
     </Container>

@@ -1,5 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { addProduct } from '../redux/cartSlice';
 
 const Card = styled.div`
   background: #fff;
@@ -92,7 +94,8 @@ export interface ProductProps {
   updatedAt: string;
 }
 
-const Product = ({ name, price, description, photo }: ProductProps) => {
+const Product = ({ id, name, price, description, photo }: ProductProps) => {
+  const dispatch = useDispatch();
   return (
     <Card>
       <CardBody>
@@ -103,11 +106,21 @@ const Product = ({ name, price, description, photo }: ProductProps) => {
         />
         <TitlePriceFlex>
           <Title>{name}</Title>
-          <PriceTag>R$ {Number(price).toFixed()}</PriceTag>
+          <PriceTag>
+            {Intl.NumberFormat('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+              maximumFractionDigits: 0,
+            }).format(Number(price))}
+          </PriceTag>
         </TitlePriceFlex>
         <Desc>{description}</Desc>
       </CardBody>
-      <BuyButton>
+      <BuyButton
+        onClick={() =>
+          dispatch(addProduct({ id, name, price, photo, quantity: 1 }))
+        }
+      >
         <img src="/buy.svg" alt="Adicionar ao carrinho" />
         <span>Comprar</span>
       </BuyButton>

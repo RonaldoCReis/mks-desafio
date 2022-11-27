@@ -1,5 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { ProductTypes, removeProduct } from '../../redux/cartSlice';
 import NumberPicker from '../NumberPicker';
 
 const Card = styled.div`
@@ -63,17 +65,25 @@ const RemoveProduct = styled.button`
   width: 18px;
 `;
 
-const CartProduct = () => {
+const CartProduct = ({ id, name, photo, price, quantity }: ProductTypes) => {
+  const dispatch = useDispatch();
+
   return (
     <Card>
-      <RemoveProduct>
+      <RemoveProduct onClick={() => dispatch(removeProduct({ id }))}>
         <img src="/close.svg" alt="Remover produto" />
       </RemoveProduct>
-      <img src="#" alt="" />
-      <Name>Apple Watch Series 4 GPS</Name>
+      <img width={50} height={50} src={photo} alt={name} />
+      <Name>{name}</Name>
       <Flex>
-        <NumberPicker />
-        <Price>R$399</Price>
+        <NumberPicker id={id} quantity={quantity} />
+        <Price>
+          {Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+            maximumFractionDigits: 0,
+          }).format(Number(price))}
+        </Price>
       </Flex>
     </Card>
   );

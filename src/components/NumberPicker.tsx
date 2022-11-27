@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { setProductQuantity } from '../redux/cartSlice';
 
 const Label = styled.label`
   font-weight: 400;
@@ -74,30 +76,41 @@ const Divider = styled.div`
   height: 100%;
   background: #bfbfbf;
 `;
-const NumberPicker = () => {
-  const [quantity, setQuantity] = useState('1');
+
+interface pickerTypes {
+  id: number;
+  quantity: string;
+}
+
+const NumberPicker = ({ id, quantity }: pickerTypes) => {
+  const dispatch = useDispatch();
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     // not allow to type in non-numeric characters
     if (event.target.value.match(/^[0-9]*$/)) {
-      setQuantity(event.target.value);
+      dispatch(setProductQuantity({ id, quantity: event.target.value }));
     }
   }
 
   function handleBlur(event: React.FocusEvent<HTMLInputElement>) {
     if (event.target.value === '') {
-      setQuantity('0');
+      dispatch(setProductQuantity({ id, quantity: '0' }));
     }
   }
 
   function handleDecrement() {
     if (quantity !== '0') {
-      setQuantity((prevQuantity) => String(Number(prevQuantity) - 1));
+      dispatch(
+        setProductQuantity({ id, quantity: String(Number(quantity) - 1) })
+      );
     }
   }
   function handleIncrement() {
-    setQuantity((prevQuantity) => String(Number(prevQuantity) + 1));
+    dispatch(
+      setProductQuantity({ id, quantity: String(Number(quantity) + 1) })
+    );
   }
+
   return (
     <div style={{ position: 'relative' }}>
       <Label>Qtd: </Label>

@@ -1,7 +1,7 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Cart from '../src/components/cart/Cart';
 import Product, { ProductProps } from '../src/components/Product';
-import { openCart } from '../src/redux/cartSlice';
+import { openCart, selectNumberOfProducts } from '../src/redux/cartSlice';
 import {
   CartButton,
   Footer,
@@ -26,6 +26,7 @@ export async function getServerSideProps() {
 
 export default function Home(props: { products: ProductProps[] }) {
   const dispatch = useDispatch();
+  const numberOfProducts = useSelector(selectNumberOfProducts);
   return (
     <>
       <Header>
@@ -35,7 +36,7 @@ export default function Home(props: { products: ProductProps[] }) {
         </Logo>
         <CartButton onClick={() => dispatch(openCart())}>
           <img src="/cart.svg" alt="Carrinho de compras" />
-          <span>0</span>
+          <span>{numberOfProducts}</span>
         </CartButton>
       </Header>
       <Main>
