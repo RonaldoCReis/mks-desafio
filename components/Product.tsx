@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { addProduct } from '../redux/cartSlice';
+import { addProduct } from '../src/redux/cartSlice';
 
 const Card = styled.div`
   background: #fff;

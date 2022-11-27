@@ -6,7 +6,7 @@ import {
   closeCart,
   selectProducts,
   selectTotal,
-} from '../../redux/cartSlice';
+} from '../../src/redux/cartSlice';
 import CartProduct from './CartProduct';
 
 const Container = styled.div`

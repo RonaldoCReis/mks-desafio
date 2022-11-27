@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import Home from '../pages/index';
+import Home from '../src/pages/index';
 import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
-import store from '../redux/store';
+import store from '../src/redux/store';
 import { ProductProps } from '../components/Product';
 
 export const mockProducts: ProductProps[] = [

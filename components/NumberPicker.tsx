@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { setProductQuantity } from '../redux/cartSlice';
+import { setProductQuantity } from '../src/redux/cartSlice';
 
 const Label = styled.label`
   font-weight: 400;

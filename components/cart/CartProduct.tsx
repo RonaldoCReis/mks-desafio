@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { ProductTypes, removeProduct } from '../../redux/cartSlice';
+import { ProductTypes, removeProduct } from '../../src/redux/cartSlice';
 import NumberPicker from '../NumberPicker';
 
 const Card = styled.div`
