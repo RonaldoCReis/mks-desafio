@@ -74,3 +74,5 @@ export const selectTotal = (state: { cart: CartTypes }) => {
 export const selectNumberOfProducts = (state: { cart: CartTypes }) => {
   return state.cart.products.length;
 };
+
+export const isCartOpen = (state: { cart: CartTypes }) => state.cart.isOpen;

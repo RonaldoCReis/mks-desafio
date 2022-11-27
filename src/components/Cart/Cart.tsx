@@ -11,10 +11,9 @@ import CartProduct from './CartProduct';
 
 const Container = styled.div`
   position: fixed;
-  transform: translateX(100%);
 
   top: 0;
-  right: 0;
+  right: -486px;
   width: 486px;
   height: 100vh;
   background: #0f52ba;
@@ -25,12 +24,13 @@ const Container = styled.div`
   flex-direction: column;
   transition: 0.3s;
   @media (max-width: 768px) {
-    width: 90%;
+    width: 90vw;
+    right: -90vw;
     padding: 25px 46px calc(42px + 97px) 34px;
   }
 
   &.active {
-    transform: translateX(0);
+    transform: translateX(-100%);
   }
 `;
 

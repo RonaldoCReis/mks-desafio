@@ -117,6 +117,7 @@ const Product = ({ id, name, price, description, photo }: ProductProps) => {
         <Desc>{description}</Desc>
       </CardBody>
       <BuyButton
+        data-testid="buy-button"
         onClick={() =>
           dispatch(addProduct({ id, name, price, photo, quantity: 1 }))
         }

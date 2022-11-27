@@ -2,7 +2,11 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Cart from '../src/components/cart/Cart';
 import Product, { ProductProps } from '../src/components/Product';
-import { openCart, selectNumberOfProducts } from '../src/redux/cartSlice';
+import {
+  isCartOpen,
+  openCart,
+  selectNumberOfProducts,
+} from '../src/redux/cartSlice';
 import { Shimmer } from 'react-shimmer';
 import {
   CartButton,
@@ -14,38 +18,41 @@ import {
   Main,
 } from './styles';
 
-// export async function getStaticProps() {
-//   const res = await fetch(
-//     'https://mks-frontend-challenge-api.herokuapp.com/api/v1/products?page=1&rows=8&sortBy=id&orderBy=DESC'
-//   );
-//   const data = await res.json();
-//   const products = await data.products;
+export async function getStaticProps() {
+  const res = await fetch(
+    'https://mks-frontend-challenge-api.herokuapp.com/api/v1/products?page=1&rows=8&sortBy=id&orderBy=DESC'
+  );
+  const data = await res.json();
+  const products = await data.products;
 
-//   return {
-//     props: { products }, // will be passed to the page component as props
-//   };
-// }
+  return {
+    props: { products }, // will be passed to the page component as props
+  };
+}
 
-export default function Home() {
-  const [loading, setLoading] = useState(true);
-  const [products, setProducts] = useState({} as ProductProps[]);
+export default function Home(props: { products: ProductProps[] }) {
+  const [loading, setLoading] = useState(false);
+  // const [products, setProducts] = useState({} as ProductProps[]);
   const dispatch = useDispatch();
   const numberOfProducts = useSelector(selectNumberOfProducts);
+  const cart = useSelector(isCartOpen);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const res = await fetch(
-        'https://mks-frontend-challenge-api.herokuapp.com/api/v1/products?page=1&rows=8&sortBy=id&orderBy=DESC'
-      );
-      const data = await res.json();
-      console.log(data.products);
+  console.log(props);
 
-      setProducts(data.products);
-      setLoading(false);
-    };
-    fetchProducts();
-    console.log(products);
-  }, []);
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     const res = await fetch(
+  //       'https://mks-frontend-challenge-api.herokuapp.com/api/v1/products?page=1&rows=8&sortBy=id&orderBy=DESC'
+  //     );
+  //     const data = await res.json();
+  //     console.log(data.products);
+
+  //     setProducts(data.products);
+  //     setLoading(false);
+  //   };
+  //   fetchProducts();
+  //   console.log(products);
+  // }, []);
 
   return (
     <>
@@ -56,12 +63,12 @@ export default function Home() {
         </Logo>
         <CartButton onClick={() => dispatch(openCart())}>
           <img src="/cart.svg" alt="Carrinho de compras" />
-          <span>{numberOfProducts}</span>
+          <span data-testid="cartNumber">{numberOfProducts}</span>
         </CartButton>
       </Header>
       <Main>
-        {products.length > 0 ? (
-          products.map((product) => (
+        {props.products.length > 0 ? (
+          props.products.map((product) => (
             <Product
               name={product.name}
               photo={product.photo}
@@ -76,6 +83,7 @@ export default function Home() {
           ))
         ) : (
           <>
+            <span style={{ display: 'none' }} data-testid="shimmer" />
             <Shimmer height={266} width={218} className="placeholder" />
             <Shimmer height={266} width={218} className="placeholder" />
             <Shimmer height={266} width={218} className="placeholder" />
